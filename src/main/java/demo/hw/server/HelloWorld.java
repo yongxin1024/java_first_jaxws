@@ -18,24 +18,32 @@
  */
 package demo.hw.server;
 
-import javax.xml.bind.annotation.XmlType;
+import java.util.Map;
+
+import jakarta.jws.WebService;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+// START SNIPPET: service
+
+@WebService
+public interface HelloWorld {
+
+    String sayHi(String text);
 
 
-@XmlType(name = "User")
-public class UserImpl implements User {
-    String name;
+    /* Advanced usecase of passing an Interface in.  JAX-WS/JAXB does not
+     * support interfaces directly.  Special XmlAdapter classes need to
+     * be written to handle them
+     */
+    String sayHiToUser(User user);
 
-    public UserImpl() {
-    }
-    public UserImpl(String s) {
-        name = s;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String s) {
-        name = s;
-    }
+    /* Map passing
+     * JAXB also does not support Maps.  It handles Lists great, but Maps are
+     * not supported directly.  They also require use of a XmlAdapter to map
+     * the maps into beans that JAXB can use. 
+     */
+    @XmlJavaTypeAdapter(IntegerUserMapAdapter.class)
+    Map<Integer, User> getUsers();
 }
+// END SNIPPET: service

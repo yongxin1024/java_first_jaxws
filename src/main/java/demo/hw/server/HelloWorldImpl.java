@@ -16,22 +16,35 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+// START SNIPPET: service
 package demo.hw.server;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.jws.WebService;
+
+@WebService(endpointInterface = "demo.hw.server.HelloWorld",
+            serviceName = "HelloWorld")
+public class HelloWorldImpl implements HelloWorld {
+    Map<Integer, User> users = new LinkedHashMap<Integer, User>();
 
 
-public class UserAdapter extends XmlAdapter<UserImpl, User> {
-    public UserImpl marshal(User v) throws Exception {
-        if (v instanceof UserImpl) {
-            return (UserImpl)v;
-        }
-        return new UserImpl(v.getName());
+    public String sayHi(String text) {
+        System.out.println("sayHi called");
+        return "Hello " + text;
     }
 
-    public User unmarshal(UserImpl v) throws Exception {
-        return v;
+    public String sayHiToUser(User user) {
+        System.out.println("sayHiToUser called");
+        users.put(users.size() + 1, user);
+        return "Hello "  + user.getName();
     }
+
+    public Map<Integer, User> getUsers() {
+        System.out.println("getUsers called");
+        return users;
+    }
+
 }
-
+// END SNIPPET: service

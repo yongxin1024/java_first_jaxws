@@ -6,9 +6,6 @@ package demo.hw.server.service;
  * This class is not complete
  */
 
-import org.apache.cxf.feature.LoggingFeature;
-import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
-
 import javax.xml.namespace.QName;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -40,10 +37,9 @@ public final class HelloWorld_HelloWorldImplPort_Client {
                 e.printStackTrace();
             }
         }
-        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
-        factory.getFeatures().add(new LoggingFeature());
+
         HelloWorld_Service ss = new HelloWorld_Service(wsdlURL, SERVICE_NAME);
-        HelloWorld port = ss.getHelloWorldImplPort(new LoggingFeature());
+        HelloWorld port = ss.getHelloWorldImplPort();
 
 
         System.out.println("Invoking sayHi...");

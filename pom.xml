@@ -32,6 +32,8 @@
     <version>1.0</version>
     <properties>
         <cxf.tomcat.version>9.0.96</cxf.tomcat.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <build>
         <plugins>

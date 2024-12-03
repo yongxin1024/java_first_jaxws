@@ -50,7 +50,7 @@
         </dependency>
         <dependency>
             <groupId>com.sun.xml.ws</groupId>
-            <artifactId>jaxws-rt</artifactId>
+            <artifactId>rt</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.soap</groupId>

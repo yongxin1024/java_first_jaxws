@@ -33,13 +33,6 @@ public class User {
 
     protected String name;
 
-    public User() {
-    }
-
-    public User(String name) {
-        this.name = name;
-    }
-
     /**
      * Gets the value of the name property.
      * 

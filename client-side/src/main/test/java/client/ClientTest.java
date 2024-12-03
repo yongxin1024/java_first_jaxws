@@ -2,10 +2,21 @@ package client;
 import demo.hw.server.service.*;
 import org.junit.Test;
 
-import java.util.Map;
 
 public class ClientTest {
 
+    private class UserWrapper{
+        private User user;
+
+        public UserWrapper(String userName) {
+            this.user = new User();
+            this.user.setName(userName);
+        }
+
+        public User getUser() {
+            return user;
+        }
+    }
 
     @Test
     public void test(){
@@ -14,14 +25,14 @@ public class ClientTest {
 
         System.out.println(hw.sayHi("World"));
 
-        User user = new User("Joe");
+        User user = new UserWrapper("Joe").getUser();
         System.out.println(hw.sayHiToUser(user));
 
         //say hi to some more users to fill up the map a bit
-        user = new User("Galaxy");
+        user = new UserWrapper("Galaxy").getUser();
         System.out.println(hw.sayHiToUser(user));
 
-        user = new User("Universe");
+        user = new UserWrapper("Universe").getUser();
         System.out.println(hw.sayHiToUser(user));
 
         // TODO fail to get users

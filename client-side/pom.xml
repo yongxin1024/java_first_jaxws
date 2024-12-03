@@ -41,6 +41,47 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.3</version>
+                <executions>
+                    <execution>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- dir where cxf-codegen-plugin has generated model classes -->
+                    <basedir>${basedir}/src/main/java</basedir>
+                    <includes>
+                        <include>**/HelloWorld_Service.java</include>
+                        <include>**/HelloWorld.java</include>
+                    </includes>
+                    <regex>false</regex>
+                    <replacements>
+                        <replacement>
+                            <token>
+                                javax.xml.ws
+                            </token>
+                            <value>
+                                jakarta.xml.ws
+                            </value>
+                        </replacement>
+                        <replacement>
+                            <token>
+                                javax.jws
+                            </token>
+                            <value>
+                                jakarta.jws
+                            </value>
+                        </replacement>
+
+                    </replacements>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -62,7 +103,7 @@
         </dependency>
         <dependency>
             <groupId>com.sun.xml.ws</groupId>
-            <artifactId>jaxws-rt</artifactId>
+            <artifactId>rt</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.soap</groupId>
@@ -75,17 +116,6 @@
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
-        </dependency>
-        <!-- JAXB API (for Java 11 and beyond) -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-        </dependency>
-
-        <!-- JAXB Runtime (for Java 11 and beyond) -->
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
         </dependency>
 
         <dependency>

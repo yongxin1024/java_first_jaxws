@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -16,42 +16,30 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-// START SNIPPET: service
 package demo.hw.server.service;
 
-import jakarta.jws.WebService;
+
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebService(endpointInterface = "demo.hw.server.service.HelloWorld",
-        serviceName = "HelloWorld")
-public class HelloWorldImpl implements HelloWorld {
-    Map<Integer, User> users = new LinkedHashMap<Integer, User>();
+
+public class UserListAdapter extends XmlAdapter<UserList, List<User>> {
 
 
-    public String sayHi(String text) {
-        System.out.println("sayHi called");
-        return "Hello " + text;
+    @Override
+    public List<User> unmarshal(UserList userList) throws Exception {
+        return userList == null ? new ArrayList<User>(): userList.getUserList();
     }
 
-    public String sayHiToUser(User user) {
-        System.out.println("sayHiToUser called:" + user.getName());
-        users.put(users.size() + 1, user);
-        return "Hello " + user.getName();
+    @Override
+    public UserList marshal(List<User> users) throws Exception {
+        UserList userList = new UserList();
+        userList.setUserList(users);
+        return userList;
     }
-
-    public Map<Integer, User> getUsers() {
-        System.out.println("getUsers called");
-        return users;
-    }
-
-    public List<User> getUserList() {
-        System.out.println("getUsers called");
-        return new ArrayList<>(users.values());
-    }
-
 }
-// END SNIPPET: service
+

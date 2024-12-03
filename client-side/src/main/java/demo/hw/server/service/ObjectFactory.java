@@ -24,6 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _GetUserList_QNAME = new QName("http://service.server.hw.demo/", "getUserList");
+    private final static QName _GetUserListResponse_QNAME = new QName("http://service.server.hw.demo/", "getUserListResponse");
     private final static QName _GetUsers_QNAME = new QName("http://service.server.hw.demo/", "getUsers");
     private final static QName _GetUsersResponse_QNAME = new QName("http://service.server.hw.demo/", "getUsersResponse");
     private final static QName _SayHi_QNAME = new QName("http://service.server.hw.demo/", "sayHi");
@@ -36,6 +38,22 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link GetUserList }
+     * 
+     */
+    public GetUserList createGetUserList() {
+        return new GetUserList();
+    }
+
+    /**
+     * Create an instance of {@link GetUserListResponse }
+     * 
+     */
+    public GetUserListResponse createGetUserListResponse() {
+        return new GetUserListResponse();
     }
 
     /**
@@ -87,6 +105,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UserList }
+     * 
+     */
+    public UserList createUserList() {
+        return new UserList();
+    }
+
+    /**
+     * Create an instance of {@link User }
+     * 
+     */
+    public User createUser() {
+        return new User();
+    }
+
+    /**
      * Create an instance of {@link IntegerUserMap }
      * 
      */
@@ -103,11 +137,29 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link User }
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserList }{@code >}
      * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link GetUserList }{@code >}
      */
-    public User createUser() {
-        return new User();
+    @XmlElementDecl(namespace = "http://service.server.hw.demo/", name = "getUserList")
+    public JAXBElement<GetUserList> createGetUserList(GetUserList value) {
+        return new JAXBElement<GetUserList>(_GetUserList_QNAME, GetUserList.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserListResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link GetUserListResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://service.server.hw.demo/", name = "getUserListResponse")
+    public JAXBElement<GetUserListResponse> createGetUserListResponse(GetUserListResponse value) {
+        return new JAXBElement<GetUserListResponse>(_GetUserListResponse_QNAME, GetUserListResponse.class, null, value);
     }
 
     /**

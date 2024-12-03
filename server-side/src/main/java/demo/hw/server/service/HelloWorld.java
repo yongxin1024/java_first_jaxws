@@ -18,6 +18,7 @@
  */
 package demo.hw.server.service;
 
+import java.util.List;
 import java.util.Map;
 
 import jakarta.jws.WebService;
@@ -45,5 +46,8 @@ public interface HelloWorld {
      */
     @XmlJavaTypeAdapter(IntegerUserMapAdapter.class)
     Map<Integer, User> getUsers();
+
+    @XmlJavaTypeAdapter(UserListAdapter.class)
+    public List<User> getUserList();
 }
 // END SNIPPET: service
